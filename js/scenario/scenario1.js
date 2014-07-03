@@ -3,21 +3,20 @@ define(["traveler", "elevator"], function(Traveler, Elevator) {
 		maxTicks: 40,
 		getElevatorSetup: function() {
 			return [
-				new Elevator("HISS 1", 2, 12, 1, 1, 6),
-				new Elevator("HISS 2", 2, 12, 1, 1, 6)
+				//new Elevator("HISS 1", 2, 12, 1, 1, 6),
+				new Elevator("HISS 2", 2, 12, 2, 3, 6)
 			];
 		},
-		onTick: function(tick, elevators) {
-			elevators.onTick();
+		onTick: function(tick, system) {
 			switch (tick) {
 				case 1:
-					elevators.addTraveler(new Traveler(0, 5));
+					system.addTraveler(new Traveler(0, 5));
 					break;
 				/*case 2:
-					elevators.addTraveler(new Traveler(0, 4));
+					system.addTraveler(new Traveler(0, 4));
 					break;*/
 				case 2:
-					elevators.addTraveler(new Traveler(3, 6));
+					//system.addTraveler(new Traveler(3, 6));
 					break;
 			}
 		}

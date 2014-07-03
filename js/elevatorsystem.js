@@ -2,6 +2,12 @@ define(["elevator"], function(Elevator) {
 	return function(logic, elevators) {
 		var self = this;
 		var travelers = [];
+
+		console.log("Elevator system initializing with " + elevators.length + " elevator(s):");
+		_.each(elevators, function(item, index) {
+			console.log("Elevator " + index, item.getState());
+		});
+
 		this.addTraveler = function(traveler) {
 			var floorsCalling = _.map(travelers, function(item) {
 				return item.getFromFloor();
@@ -27,20 +33,19 @@ define(["elevator"], function(Elevator) {
 		};
 		this.startMovingElevator = function(index, toFloor) {
 			var elevator = elevators[index];
-			console.log("Start moving elevator " + index + " from " + elevator.getFloor() + " to " + toFloor);
 			elevator.startMovingToFloor(toFloor);
 		};
 		this.onTick = function() {
+			// Tick each elevator first
+			_.each(elevators, function(item) {
+				item.onTick(self.getState(), self.onElevatorOpened);
+			});
+
 			logic.onTick(self.getState(), self.startMovingElevator);
 
 			// Then tick each traveler
 			_.each(travelers, function(item) {
 				item.onTick();
-			});
-
-			// Tick each elevator first
-			_.each(elevators, function(item) {
-				item.onTick(self.getState(), self.onElevatorOpened);
 			});
 		};
 		this.onElevatorOpened = function(elevator) {

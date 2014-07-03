@@ -14,6 +14,8 @@ define(function () {
 				floorCount: floorCount,
 				ticksLeft: ticksLeft,
 				state: state,
+				timePerFloor: timePerFloor,
+				timeOpenClose: timeOpenClose,
 				movingToFloor: movingToFloor,
 				pushedButtons: [].concat(pushedButtonsInside)
 			};
@@ -33,7 +35,8 @@ define(function () {
 		};
 
 		this.startMovingToFloor = function(v) {
-			ticksLeft = timePerFloor + 1;
+			console.log("Initiate moving elevator " + id + " from " + floor + " to " + v);
+			ticksLeft = timePerFloor;
 			movingToFloor = v;
 			state = "moving";
 		};

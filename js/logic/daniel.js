@@ -20,7 +20,6 @@ define(function() {
 		var floorsCalling = [];
 
 		this.onTick = function(systemState, moveToFloorCallback) {
-			console.log("System state:", systemState);
 			if (floorsCalling.length > 0) {
 				var freeElevator = getFreeElevator(systemState);
 				if (freeElevator !== null) {

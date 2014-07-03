@@ -1,3 +1,7 @@
+/*
+ * A traveler defines a person using the elevator. The traveler takes care of
+ * calling the elevators and measure the time they wait and ride an elevator.
+ */
 define(function() {
 	var nextId = 1;
 	return function (fromFloor, toFloor) {
@@ -10,11 +14,9 @@ define(function() {
 			switch (state) {
 				case "waiting":
 					waited++;
-					totalWaitTime++;
 					break;
 				case "going":
 					going++;
-					totalGoingTime++;
 					break;
 			}
 		};

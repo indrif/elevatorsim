@@ -1,11 +1,7 @@
 define(["elevator"], function(Elevator) {
-	return function(logic) {
+	return function(logic, elevators) {
 		var self = this;
 		var travelers = [];
-		var elevators = [
-			new Elevator("HISS 1", 2, 12, 1, 1, 6),
-			new Elevator("HISS 2", 2, 12, 1, 1, 6)
-		];
 		this.addTraveler = function(traveler) {
 			var floorsCalling = _.map(travelers, function(item) {
 				return item.getFromFloor();

@@ -1,6 +1,11 @@
 define(function() {
-	var floorsCalling = [];
 
+	/**
+	 * Returns an elevator index to an elevator that is currently free for work (still).
+	 * Returns null if no free elevator was found.
+	 *
+	 * @param state System state.
+	 */
 	function getFreeElevator(state) {
 		var freeIndex = null;
 		_.each(state.elevators, function(item, index) {
@@ -11,8 +16,10 @@ define(function() {
 		return freeIndex;
 	}
 
-	return {
-		onTick: function(systemState, moveToFloorCallback) {
+	return function () {
+		var floorsCalling = [];
+
+		this.onTick = function(systemState, moveToFloorCallback) {
 			console.log("System state:", systemState);
 			if (floorsCalling.length > 0) {
 				var freeElevator = getFreeElevator(systemState);
@@ -30,20 +37,21 @@ define(function() {
 					}
 				});
 			}
-		},
+		};
+
 		/**
 		 * A traveler pushed a button on a floor that was not already pushed.
 		 */
-		onFloorCalled: function(systemState, floor) {
+		this.onFloorCalled = function(systemState, floor) {
 			console.log("Floor calling: ", floor);
 			floorsCalling.push(floor);
-		},
+		};
 
 		/**
 		 * Floor button pushed by a traveler inside the elevator.
 		 */
-		onFloorPushed: function(systemState, elevatorIndex, floor) {
+		this.onFloorPushed = function(systemState, elevatorIndex, floor) {
 
-		}
+		};
 	};
 });

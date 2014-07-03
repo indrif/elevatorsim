@@ -1,8 +1,8 @@
 var totalWaitTime = 0;
 var totalGoingTime = 0;
 
-require(["elevatorsystem", "scenario/scenario1", "logic/daniel"], function(ElevatorSystem, scenario, Logic1) {
-	var system = new ElevatorSystem(Logic1);
+require(["elevatorsystem", "scenario/scenario1", "logic/daniel"], function(ElevatorSystem, scenario, Logic) {
+	var system = new ElevatorSystem(new Logic(), scenario.getElevatorSetup());
 	console.log("Elevator system initialized");
 	for(var i = 1; i <= scenario.maxTicks; i++) {
 		console.group("=== TICK " + i + " ===");

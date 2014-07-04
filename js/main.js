@@ -12,13 +12,17 @@ require([
 	// Go through scenario
 	var stats = new Stats();
 	var tick = 1;
-	while(!scenario.isFinished(tick)) {
-		// Log a new tick group
-		console.group("=== TICK " + tick + " ===");
-
+	while(true) {
 		// Get current system state
 		var systemState = system.getState();
 		console.log("System state:", systemState);
+
+		// Check if scenario is finished
+		if (scenario.isFinished(tick, systemState)) {
+			break;
+		}
+		// Log a new tick group
+		console.group("=== TICK " + tick + " ===");
 
 		// Advance the scenario
 		scenario.onTick(tick, system);
@@ -36,5 +40,5 @@ require([
 		tick++;
 	}
 
-	stats.onEnd();
+	//stats.onEnd();
 });

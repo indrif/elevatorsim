@@ -11,16 +11,17 @@ require([
 
 	// Go through scenario
 	var stats = new Stats();
-	for(var i = 1; i <= scenario.maxTicks; i++) {
+	var tick = 1;
+	while(!scenario.isFinished(tick)) {
 		// Log a new tick group
-		console.group("=== TICK " + i + " ===");
+		console.group("=== TICK " + tick + " ===");
 
 		// Get current system state
 		var systemState = system.getState();
 		console.log("System state:", systemState);
 
 		// Advance the scenario
-		scenario.onTick(i, system);
+		scenario.onTick(tick, system);
 
 		// Advance the elevator system
 		system.onTick();
@@ -30,6 +31,9 @@ require([
 
 		// End tick group
 		console.groupEnd();
+
+		// Increase time
+		tick++;
 	}
 
 	stats.onEnd();

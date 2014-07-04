@@ -1,6 +1,8 @@
 define(["traveler", "elevator"], function(Traveler, Elevator) {
 	return {
-		maxTicks: 12,
+		isFinished: function(currentTick) {
+			return currentTick > 12
+		},
 		getElevatorSetup: function() {
 			return [
 				//new Elevator("HISS 1", 2, 12, 1, 1, 6),

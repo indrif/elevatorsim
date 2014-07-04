@@ -1,20 +1,28 @@
-// Setup requirej
+#!/usr/bin/env node
+
+// Setup requirejsnp
 var requirejs = require("requirejs");
 requirejs.config({
 	nodeRequire: require
 });
 
-// Load AI from first argument
-var arguments = process.argv.slice(2);
-var ai = arguments[0];
-var scenario = arguments[1];
+var argv = require('yargs')
+    .usage('Usage: $0')
+    .example('$0 --ai=simple --scenario=scenario1', 'Run the simulation with the default options')
+    .demand('a')
+    .alias('a', 'ai')
+    .describe('a', 'Select an AI to use')
+    .demand('s')
+    .alias('s', 'scenario')
+    .describe('s', 'Select a scenario to run')
+    .argv;
 
 // Start
 requirejs([
 	"elevatorsystem",
 	"stats",
-	"scenario/" + scenario,
-	"ai/" + ai
+	"scenario/" + argv.scenario,
+	"ai/" + argv.ai
 	], function(ElevatorSystem, Stats, scenario, AI) {
 
 	// Initialize elevator system with the given ai and scenario

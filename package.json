@@ -6,7 +6,8 @@
   "dependencies": {
     "chance": "^0.5.8",
     "requirejs": "~2.1.14",
-    "underscore": "^1.6.0"
+    "underscore": "^1.6.0",
+    "yargs": "^1.2.6"
   },
   "devDependencies": {},
   "scripts": {

@@ -11,6 +11,13 @@ More information?
 ---
 I will write more in this readme when I get the inspiration.
 
+How to run
+---
+`node main.js [AI] [SCENARIO]`
+
+Examples:
+`node main.js simple scenario1`
+
 License
 ---
 MIT

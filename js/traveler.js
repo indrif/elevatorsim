@@ -3,11 +3,9 @@
  * calling the elevators and measure the time they wait and ride an elevator.
  */
 define(function() {
-	var nextId = 1;
-	return function (fromFloor, toFloor) {
+	return function (id, fromFloor, toFloor) {
 		var waited = 0,
 			going = 0,
-			id = nextId++,
 			state = "waiting";
 
 		this.onTick = function() {

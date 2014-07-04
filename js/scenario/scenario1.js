@@ -1,4 +1,11 @@
 define(["traveler", "elevator"], function(Traveler, Elevator) {
+	var id = 1;
+	var chance = new Chance(1);
+
+	function getName() {
+		return chance.name({prefix: true}) + " (" + (id++) + ")";
+	}
+
 	return {
 		isFinished: function(currentTick) {
 			return currentTick > 12
@@ -12,13 +19,13 @@ define(["traveler", "elevator"], function(Traveler, Elevator) {
 		onTick: function(tick, system) {
 			switch (tick) {
 				case 1:
-					system.addTraveler(new Traveler(0, 5));
+					system.addTraveler(new Traveler(getName(), 0, 5));
 					break;
 				/*case 2:
-					system.addTraveler(new Traveler(0, 4));
+					system.addTraveler(new Traveler(getName(), 0, 4));
 					break;*/
 				case 2:
-					//system.addTraveler(new Traveler(3, 6));
+					//system.addTraveler(new Traveler(getName(), 3, 6));
 					break;
 			}
 		}

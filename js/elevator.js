@@ -1,5 +1,5 @@
 define(function () {
-	return function(id, floor, floorCount, timePerFloor, timeOpenClose) {
+	return function(id, floor, floorCount, timePerFloor, timeOpenClose, stats) {
 		var handler = null,
 			pushedButtonsInside = [],
 			travelers = [],
@@ -93,6 +93,7 @@ define(function () {
 						});
 						_.each(partitions[0], function(item) {
 							console.log("Unload traveler " + item.getId() + " at " + floor + " that waited for " + item.getWaitedTime() + " ticks and that was in the elevator for " + item.getGoingTime() + " ticks.");
+							stats.onTravelerUnloaded(item);
 						});
 						travelers = partitions[1];
 

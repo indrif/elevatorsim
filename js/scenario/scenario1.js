@@ -15,13 +15,13 @@ define(["traveler", "elevator"], function(Traveler, Elevator) {
 
 	return {
 		isFinished: function(currentTick, systemState) {
-			// End if more than 50 ticks have passed or if the system state is empty
+			// End if more than 50 ticks have passed or if the system state is empty after 3 ticks
 			return currentTick > 50 || (currentTick > 3 && isEmptyState(systemState));
 		},
-		getElevatorSetup: function() {
+		getElevatorSetup: function(stats) {
 			return [
-				//new Elevator("HISS 1", 2, 12, 1, 1, 6),
-				new Elevator("HISS 2", 2, 12, 1, 1, 6)
+				//new Elevator("HISS 1", 2, 12, 1, 6),
+				new Elevator("HISS 2", 2, 12, 1, 6, stats)
 			];
 		},
 		onTick: function(tick, system) {

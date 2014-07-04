@@ -1,5 +1,5 @@
 define(["elevator"], function(Elevator) {
-	return function(ai, elevators) {
+	return function(ai, elevators, stats) {
 		var self = this;
 		var travelers = [];
 

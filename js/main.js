@@ -6,13 +6,20 @@ require([
 	], function(ElevatorSystem, Stats, scenario, AI) {
 
 	// Initialize elevator system with the given ai and scenario
-	var system = new ElevatorSystem(new AI(), scenario.getElevatorSetup());
+	var stats = new Stats();
+	var system = new ElevatorSystem(
+		new AI(),
+		scenario.getElevatorSetup(stats),
+		stats
+	);
 	console.log("Elevator system initialized");
 
 	// Go through scenario
-	var stats = new Stats();
 	var tick = 1;
 	while(true) {
+		// Log a new tick group
+		console.group("=== TICK " + tick + " ===");
+
 		// Get current system state
 		var systemState = system.getState();
 		console.log("System state:", systemState);
@@ -21,8 +28,6 @@ require([
 		if (scenario.isFinished(tick, systemState)) {
 			break;
 		}
-		// Log a new tick group
-		console.group("=== TICK " + tick + " ===");
 
 		// Advance the scenario
 		scenario.onTick(tick, system);
@@ -40,5 +45,5 @@ require([
 		tick++;
 	}
 
-	//stats.onEnd();
+	stats.onEnd();
 });

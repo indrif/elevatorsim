@@ -36,6 +36,9 @@ requirejs([
 		var systemState = system.getState();
 		console.log("System state: %s", JSON.stringify(systemState));
 
+		// Collect stats
+		stats.onTick(systemState);
+
 		// Check if scenario is finished
 		if (scenario.isFinished(tick, systemState)) {
 			break;
@@ -46,9 +49,6 @@ requirejs([
 
 		// Advance the elevator system
 		system.onTick();
-
-		// Collect stats
-		stats.onTick(systemState);
 
 		// End tick group
 		console.log("");

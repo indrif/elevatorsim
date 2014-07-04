@@ -1,7 +1,7 @@
 {
   "name": "elevatorsim",
-  "version": "0.0.0",
-  "description": "elevatorsim ===========",
+  "version": "0.0.1",
+  "description": "Elevator simulator with custom AI.",
   "main": "main.js",
   "dependencies": {
     "chance": "^0.5.8",

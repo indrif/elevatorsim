@@ -1,0 +1,25 @@
+{
+  "name": "elevatorsim",
+  "version": "0.0.0",
+  "description": "elevatorsim ===========",
+  "main": "main.js",
+  "dependencies": {
+    "chance": "^0.5.8",
+    "requirejs": "~2.1.14",
+    "underscore": "^1.6.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/indrif/elevatorsim.git"
+  },
+  "author": "indrif",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/indrif/elevatorsim/issues"
+  },
+  "homepage": "https://github.com/indrif/elevatorsim"
+}

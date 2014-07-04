@@ -1,4 +1,4 @@
-define(["elevator"], function(Elevator) {
+define(["underscore", "elevator"], function(_, Elevator) {
 	return function(ai, elevators, stats) {
 		var self = this;
 		var travelers = [];

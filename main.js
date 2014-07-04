@@ -1,8 +1,20 @@
-require([
+// Setup requirej
+var requirejs = require("requirejs");
+requirejs.config({
+	nodeRequire: require
+});
+
+// Load AI from first argument
+var arguments = process.argv.slice(2);
+var ai = arguments[0];
+var scenario = arguments[1];
+
+// Start
+requirejs([
 	"elevatorsystem",
 	"stats",
-	"scenario/scenario1",
-	"ai/simple"
+	"scenario/" + scenario,
+	"ai/" + ai
 	], function(ElevatorSystem, Stats, scenario, AI) {
 
 	// Initialize elevator system with the given ai and scenario
@@ -18,11 +30,11 @@ require([
 	var tick = 1;
 	while(true) {
 		// Log a new tick group
-		console.group("=== TICK " + tick + " ===");
+		console.log("=== TICK " + tick + " ===");
 
 		// Get current system state
 		var systemState = system.getState();
-		console.log("System state:", systemState);
+		console.log("System state: %s", JSON.stringify(systemState));
 
 		// Check if scenario is finished
 		if (scenario.isFinished(tick, systemState)) {
@@ -39,11 +51,12 @@ require([
 		stats.onTick(systemState);
 
 		// End tick group
-		console.groupEnd();
+		console.log("");
 
 		// Increase time
 		tick++;
 	}
 
+	console.log("");
 	stats.onEnd();
 });

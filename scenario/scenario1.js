@@ -1,5 +1,6 @@
-define(["traveler", "elevator"], function(Traveler, Elevator) {
+define(["underscore", "traveler", "elevator"], function(_, Traveler, Elevator) {
 	var id = 1;
+	var Chance = require("chance");
 	var chance = new Chance(1);
 
 	function getName() {
@@ -20,7 +21,7 @@ define(["traveler", "elevator"], function(Traveler, Elevator) {
 		},
 		getElevatorSetup: function(stats) {
 			return [
-				//new Elevator("HISS 1", 2, 12, 1, 6),
+				new Elevator("HISS 1", 2, 12, 1, 6, stats),
 				new Elevator("HISS 2", 2, 12, 1, 6, stats)
 			];
 		},

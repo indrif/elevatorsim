@@ -1,4 +1,4 @@
-define(function () {
+define(["underscore"], function (_) {
 	return function(id, floor, floorCount, timePerFloor, timeOpenClose, stats) {
 		var handler = null,
 			pushedButtonsInside = [],

@@ -1,4 +1,4 @@
-define(function() {
+define(["underscore"], function(_) {
 
 	/**
 	 * Returns an elevator index to an elevator that is currently free for work (still).

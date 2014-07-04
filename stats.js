@@ -1,10 +1,10 @@
-define(function() {
+define(["underscore"], function(_) {
 	return function() {
 		var timeline = [];
 		var travelers = [];
 		var self = this;
 
-		console.info("Stats collection enabled");
+		console.log("Stats collection enabled");
 
 		this.onTick = function(systemState) {
 			timeline.push(systemState);
@@ -34,11 +34,11 @@ define(function() {
 			var maxGoing = _.max(_.map(travelers, function(item) {
 				return item.going;
 			}));
-			console.group("STATS");
+			console.log("STATS");
 			console.log("Min wait time:", minWaited, "Max wait time:", maxWaited);
 			console.log("Min going time:", minGoing, "Max going time:", maxGoing);
-			//console.log(timeline);
-			console.groupEnd();
+			console.log("Number of ticks:", timeline.length);
+			console.log("");
 		}
 	};
 });

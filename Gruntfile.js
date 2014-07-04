@@ -1,8 +1,8 @@
 module.exports = function(grunt) {
     grunt.initConfig({
-        pkg: grunt.file.readJSON('package.json'),
+        pkg: grunt.file.readJSON("package.json"),
         jshint: {
-            files: ['*.js'],
+            files: ["*.js", "ai/*.js", "scenario/*.js"],
             options: {
                 // options here to override JSHint defaults
                 globals: {
@@ -15,8 +15,8 @@ module.exports = function(grunt) {
         }
     });
 
-    grunt.loadNpmTasks('grunt-contrib-jshint');
+    grunt.loadNpmTasks("grunt-contrib-jshint");
 
-    grunt.registerTask('default', ['jshint']);
+    grunt.registerTask("default", ["jshint"]);
 
 };

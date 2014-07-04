@@ -28,6 +28,10 @@ define(function () {
 			};
 		};
 
+		this.getId = function() {
+			return id;
+		}
+
 		this.getFloor = function() {
 			return floor;
 		};

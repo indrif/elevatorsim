@@ -18,12 +18,26 @@ Setup
 
 How to run
 ---
-`node main.js [AI] [SCENARIO]`
+```
+./main.js 
+Usage: node ./main.js
 
 Examples:
-`node main.js simple scenario1`
+  node ./main.js --ai=simple --scenario=scenario1    Run the simulation with the default options
 
-[AI] must be the name of a file in the ai directory. [SCENARIO] must be the name of a file in the scenario directory.
+
+Options:
+  -a, --ai          Select an AI to use                      [required]
+  -s, --scenario    Select a scenario to run                 [required]
+  -r, --randomseed  Random seed to use for seeded scenarios
+```
+
+Examples:
+```
+./main.js --ai=simple --scenario=scenario1 --randomseed=123
+```
+
+`--ai` must be the name of a file in the ai directory. `--scenario` must be the name of a file in the scenario directory.
 
 License
 ---

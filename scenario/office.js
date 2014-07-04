@@ -1,12 +1,7 @@
 define(["underscore", "traveler", "elevator"], function(_, Traveler, Elevator) {
-    var id = 1;
     var Chance = require("chance");
-    var chance = new Chance(1);
-    var maxFloors = 12;
-
-    function getName() {
-        return chance.name() + " (" + (id++) + ")";
-    }
+    var seedrandom = require("seedrandom");
+    var maxFloors = 4;
 
     function isEmptyState(systemState) {
         var elevatorsBusy = _.filter(systemState.elevators, function(item) {
@@ -29,26 +24,46 @@ define(["underscore", "traveler", "elevator"], function(_, Traveler, Elevator) {
         }
     }
 
-    return {
-        isFinished: function(currentTick, systemState) {
+    return function(options) {
+        var seed = (options.randomseed) ? options.randomseed : +Date();
+        var rng = seedrandom(seed, {global: true});
+        var chance = new Chance(seed);
+
+        function getName() {
+            return chance.name();
+        }
+
+        this.isFinished = function(currentTick, systemState) {
             // End if more than 50 ticks have passed or if the system state is empty after 3 ticks
             return /*currentTick > 50 || */(currentTick > 30 && isEmptyState(systemState));
-        },
-        getElevatorSetup: function(stats) {
+        }
+        this.getElevatorSetup = function(stats) {
             return [
                 new Elevator("HISS 1", 0, maxFloors, 2, 3, stats),
                 new Elevator("HISS 2", 0, maxFloors, 2, 3, stats),
                 new Elevator("HISS 3", 0, maxFloors, 2, 3, stats)
             ];
-        },
-        onTick: function(tick, system) {
+        }
+        this.onTick = function(tick, system) {
             // 20 per hour
             // Around 20 = morning
             // Around 180 = dinner
             var morningCount = getRandomCount(tick, 20, 10, 5);
             var dinnerCount = getRandomCount(tick, 180, 10, 5);
             for(var i = 0; i < morningCount + dinnerCount; i++) {
-                system.addTraveler(new Traveler(getName(), 0, tick % maxFloors));
+                system.addTraveler(new Traveler(getName(), 0, 2 + parseInt(Math.random() * (maxFloors - 2))));
+            }
+            if (tick > 30 && tick < 170) {
+                // Random spawn travelers during the day
+                var count = parseInt(Math.random() * 2);
+                for(var i = 0; i < count; i++) {
+                    var from = parseInt(Math.random() * maxFloors);
+                    var to = parseInt(Math.random() * maxFloors);
+                    if (to === from) {
+                        to = (from + 1) % maxFloors;
+                    }
+                    system.addTraveler(new Traveler(getName(), from, to));
+                }
             }
         }
     };

@@ -18,6 +18,8 @@ How to run
 Examples:
 `node main.js simple scenario1`
 
+[AI] must be the name of a file in the ai directory. [SCENARIO] must be the name of a file in the scenario directory.
+
 License
 ---
 MIT

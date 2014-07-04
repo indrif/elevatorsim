@@ -35,16 +35,16 @@ define(function() {
 			if (state == "going") {
 				return toFloor;
 			}
-		}
+		};
 
 		this.getId = function() {
 			return id;
-		}
+		};
 
 		this.onEnterElevator = function(elevator) {
 			state = "going";
 			console.log("Traveler " + id + " entered elevator " + elevator.getId() + " and pushed " + toFloor);
 			elevator.pushButton(toFloor);
 		};
-	}
+	};
 });

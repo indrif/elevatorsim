@@ -30,7 +30,7 @@ define(["underscore"], function (_) {
 
 		this.getId = function() {
 			return id;
-		}
+		};
 
 		this.getFloor = function() {
 			return floor;
@@ -65,7 +65,7 @@ define(["underscore"], function (_) {
 			switch (state) {
 				case "moving":
 					ticksLeft--;
-					if (ticksLeft == 0) {
+					if (ticksLeft === 0) {
 						if (movingToFloor - floor > 0) {
 							floor++;
 							console.log("Moving elevator " + id + " up to " + floor);
@@ -86,7 +86,7 @@ define(["underscore"], function (_) {
 					break;
 				case "openclose":
 					ticksLeft--;
-					if (ticksLeft == 0) {
+					if (ticksLeft === 0) {
 						// Unload containing travelers going to this floor
 						var partitions = _.partition(travelers, function(item) {
 							return item.getToFloor() === floor;
@@ -107,5 +107,5 @@ define(["underscore"], function (_) {
 					break;
 			}
 		};
-	}
+	};
 });

@@ -59,6 +59,6 @@ define(["underscore", "elevator"], function(_, Elevator) {
 				elevator.addTraveler(item);
 			});
 			travelers = newList[1];
-		}
+		};
 	};
 });

@@ -23,8 +23,8 @@ var argv = require("yargs")
 requirejs([
     "elevatorsystem",
     "stats",
-    "scenario/" + argv.scenario,
-    "ai/" + argv.ai
+    argv.scenario,
+    argv.ai
     ], function(ElevatorSystem, Stats, Scenario, AI) {
 
     // Initialize elevator system with the given ai and scenario

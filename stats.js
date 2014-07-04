@@ -1,5 +1,5 @@
 define(["underscore"], function(_) {
-	return function() {
+	return function(options) {
 		var timeline = [];
 		var travelers = [];
 		var self = this;

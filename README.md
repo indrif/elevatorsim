@@ -11,6 +11,11 @@ More information?
 ---
 I will write more in this readme when I get the inspiration.
 
+Setup
+---
+* Clone repo
+* npm install
+
 How to run
 ---
 `node main.js [AI] [SCENARIO]`

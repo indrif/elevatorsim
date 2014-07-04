@@ -12,8 +12,8 @@ define(["elevator"], function(Elevator) {
 			var floorsCalling = _.map(travelers, function(item) {
 				return item.getFromFloor();
 			});
+			travelers.push(traveler);
 			if (!_.contains(floorsCalling, traveler.getFromFloor())) {
-				travelers.push(traveler);
 				ai.onFloorCalled(self.getState(), traveler.getFromFloor());
 			}
 		};

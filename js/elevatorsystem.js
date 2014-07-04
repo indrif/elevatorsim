@@ -1,5 +1,5 @@
 define(["elevator"], function(Elevator) {
-	return function(logic, elevators) {
+	return function(ai, elevators) {
 		var self = this;
 		var travelers = [];
 
@@ -14,7 +14,7 @@ define(["elevator"], function(Elevator) {
 			});
 			if (!_.contains(floorsCalling, traveler.getFromFloor())) {
 				travelers.push(traveler);
-				logic.onFloorCalled(self.getState(), traveler.getFromFloor());
+				ai.onFloorCalled(self.getState(), traveler.getFromFloor());
 			}
 		};
 		this.getState = function(index) {
@@ -41,7 +41,8 @@ define(["elevator"], function(Elevator) {
 				item.onTick(self.getState(), self.onElevatorOpened);
 			});
 
-			logic.onTick(self.getState(), self.startMovingElevator);
+			// Let the custom ai do its part
+			ai.onTick(self.getState(), self.startMovingElevator);
 
 			// Then tick each traveler
 			_.each(travelers, function(item) {

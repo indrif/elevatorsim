@@ -1,5 +1,5 @@
-require(["elevatorsystem", "scenario/scenario1", "logic/daniel"], function(ElevatorSystem, scenario, Logic) {
-	var system = new ElevatorSystem(new Logic(), scenario.getElevatorSetup());
+require(["elevatorsystem", "scenario/scenario1", "ai/daniel"], function(ElevatorSystem, scenario, AI) {
+	var system = new ElevatorSystem(new AI(), scenario.getElevatorSetup());
 	console.log("Elevator system initialized");
 	for(var i = 1; i <= scenario.maxTicks; i++) {
 		console.group("=== TICK " + i + " ===");

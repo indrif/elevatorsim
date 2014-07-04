@@ -2,7 +2,7 @@ require([
 	"elevatorsystem",
 	"stats",
 	"scenario/scenario1",
-	"ai/daniel"
+	"ai/simple"
 	], function(ElevatorSystem, Stats, scenario, AI) {
 
 	// Initialize elevator system with the given ai and scenario

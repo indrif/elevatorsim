@@ -1,11 +1,7 @@
 define(["underscore", "traveler", "elevator"], function(_, Traveler, Elevator) {
     var id = 1;
     var Chance = require("chance");
-    var chance = new Chance(1);
-
-    function getName() {
-        return chance.name({prefix: true}) + " (" + (id++) + ")";
-    }
+    var seedrandom = require("seedrandom");
 
     function isEmptyState(systemState) {
         var elevatorsBusy = _.filter(systemState.elevators, function(item) {
@@ -15,6 +11,14 @@ define(["underscore", "traveler", "elevator"], function(_, Traveler, Elevator) {
     }
 
     return function(options) {
+        var seed = (options.randomseed) ? options.randomseed : +Date();
+        var rng = seedrandom(seed, {global: true});
+        var chance = new Chance(seed);
+
+        function getName() {
+            return chance.name({prefix: true}) + " (" + (id++) + ")";
+        }
+
         this.isFinished = function(currentTick, systemState) {
             // End if more than 50 ticks have passed or if the system state is empty after 3 ticks
             return currentTick > 50 || (currentTick > 3 && isEmptyState(systemState));

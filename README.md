@@ -34,10 +34,8 @@ Options:
 
 Examples:
 ```
-./main.js --ai=simple --scenario=scenario1 --randomseed=123
+./main.js --ai=ai/simple.js --scenario=scenario/scenario1.js --randomseed=123
 ```
-
-`--ai` must be the name of a file in the ai directory. `--scenario` must be the name of a file in the scenario directory.
 
 License
 ---

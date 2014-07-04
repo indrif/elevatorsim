@@ -11,7 +11,7 @@ define(["underscore", "traveler", "elevator"], function(_, Traveler, Elevator) {
         var elevatorsBusy = _.filter(systemState.elevators, function(item) {
             return item.state !== "still" || item.pushedButtons.length > 0 || item.travelers.length > 0;
         });
-        return systemState.callingFloors.length == 0 && elevatorsBusy.length == 0;
+        return systemState.callingFloors.length === 0 && elevatorsBusy.length === 0;
     }
 
     return function(options) {

@@ -10,6 +10,7 @@ define(function() {
 
 		this.onEnd = function() {
 			console.info(JSON.stringify(timeline));
+			console.log(timeline);
 		}
 	};
 });

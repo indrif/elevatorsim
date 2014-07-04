@@ -1,6 +1,6 @@
 define(["traveler", "elevator"], function(Traveler, Elevator) {
 	return {
-		maxTicks: 40,
+		maxTicks: 12,
 		getElevatorSetup: function() {
 			return [
 				//new Elevator("HISS 1", 2, 12, 1, 1, 6),

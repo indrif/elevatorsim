@@ -17,7 +17,14 @@ define(function () {
 				timePerFloor: timePerFloor,
 				timeOpenClose: timeOpenClose,
 				movingToFloor: movingToFloor,
-				pushedButtons: [].concat(pushedButtonsInside)
+				pushedButtons: [].concat(pushedButtonsInside),
+				travelers: _.map(travelers, function(item) {
+					return {
+						to: item.getToFloor(),
+						from: item.getFromFloor(),
+						id: item.getId()
+					};
+				})
 			};
 		};
 

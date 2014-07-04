@@ -43,7 +43,7 @@ define(function() {
 
 		this.onEnterElevator = function(elevator) {
 			state = "going";
-			console.log("Traveler " + id + " entered elevator and pushed " + toFloor);
+			console.log("Traveler " + id + " entered elevator " + elevator.getId() + " and pushed " + toFloor);
 			elevator.pushButton(toFloor);
 		};
 	}

@@ -31,7 +31,7 @@ requirejs([
     var stats = new Stats(argv);
     var scenario = new Scenario(argv);
     var system = new ElevatorSystem(
-        new AI(),
+        new AI(argv),
         scenario.getElevatorSetup(stats),
         stats,
         argv

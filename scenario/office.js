@@ -36,8 +36,9 @@ define(["underscore", "traveler", "elevator"], function(_, Traveler, Elevator) {
 
         this.isFinished = function(currentTick, systemState) {
             // End if more than 50 ticks have passed or if the system state is empty after 3 ticks
-            return /*currentTick > 50 || */(currentTick > 30 && isEmptyState(systemState));
+            return currentTick > 30 && isEmptyState(systemState);
         }
+
         this.getElevatorSetup = function(stats) {
             return [
                 new Elevator("HISS 1", 0, maxFloors, 2, 3, stats),
@@ -45,6 +46,7 @@ define(["underscore", "traveler", "elevator"], function(_, Traveler, Elevator) {
                 new Elevator("HISS 3", 0, maxFloors, 2, 3, stats)
             ];
         }
+
         this.onTick = function(tick, system) {
             // 10 per hour
             // Around 10 = morning

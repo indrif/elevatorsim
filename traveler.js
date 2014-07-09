@@ -3,7 +3,7 @@
  * calling the elevators and measure the time they wait and ride an elevator.
  */
 define(function() {
-	return function (id, fromFloor, toFloor) {
+	return function (id, fromFloor, toFloor, logger) {
 		var waited = 0,
 			going = 0,
 			state = "waiting";
@@ -43,7 +43,7 @@ define(function() {
 
 		this.onEnterElevator = function(elevator) {
 			state = "going";
-			console.log("Traveler " + id + " entered elevator " + elevator.getId() + " and pushed " + toFloor);
+			logger.log("Traveler " + id + " entered elevator " + elevator.getId() + " and pushed " + toFloor);
 			elevator.pushButton(toFloor);
 		};
 	};

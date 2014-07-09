@@ -29,21 +29,20 @@ define(["underscore", "traveler", "elevator"], function(_, Traveler, Elevator) {
         return chance.name();
     }
 
-    return function(options) {
+    return function(logger, options) {
         var seed = (options.randomseed) ? options.randomseed : +Date();
         var rng = seedrandom(seed, {global: true});
         var chance = new Chance(seed);
 
         this.isFinished = function(currentTick, systemState) {
-            // End if more than 50 ticks have passed or if the system state is empty after 3 ticks
             return currentTick > 30 && isEmptyState(systemState);
         };
 
         this.getElevatorSetup = function(stats) {
             return [
-                new Elevator("HISS 1", 0, maxFloors, 2, 3, stats),
-                new Elevator("HISS 2", 0, maxFloors, 2, 3, stats),
-                new Elevator("HISS 3", 0, maxFloors, 2, 3, stats)
+                new Elevator("HISS 1", 0, maxFloors, 2, 3, logger, stats),
+                new Elevator("HISS 2", 0, maxFloors, 2, 3, logger, stats),
+                new Elevator("HISS 3", 0, maxFloors, 2, 3, logger, stats)
             ];
         };
 
@@ -54,7 +53,7 @@ define(["underscore", "traveler", "elevator"], function(_, Traveler, Elevator) {
             var morningCount = getRandomCount(tick, 10, 5, maxTravelerPeak);
             var dinnerCount = getRandomCount(tick, 90, 5, maxTravelerPeak);
             for(var i = 0; i < morningCount + dinnerCount; i++) {
-                system.addTraveler(new Traveler(getName(), 0, 2 + parseInt(Math.random() * (maxFloors - 2))));
+                system.addTraveler(new Traveler(getName(), 0, 2 + parseInt(Math.random() * (maxFloors - 2)), logger));
             }
             if (tick > 15 && tick < 95) {
                 // Random spawn travelers during the day
@@ -65,7 +64,7 @@ define(["underscore", "traveler", "elevator"], function(_, Traveler, Elevator) {
                     if (to === from) {
                         to = (from + 1) % maxFloors;
                     }
-                    system.addTraveler(new Traveler(getName(), from, to));
+                    system.addTraveler(new Traveler(getName(), from, to, logger));
                 }
             }
         };

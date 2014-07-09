@@ -29,12 +29,13 @@ Examples:
 Options:
   -a, --ai          Select an AI to use                      [required]
   -s, --scenario    Select a scenario to run                 [required]
+  -l, --logger      Select a logger to use                   [required]
   -r, --randomseed  Random seed to use for seeded scenarios
 ```
 
 Examples:
 ```
-./main.js --ai=ai/simple.js --scenario=scenario/scenario1.js --randomseed=123
+./main.js --ai=ai/simple.js --scenario=scenario/scenario1.js --logger=logger/console.js --randomseed=123
 ```
 
 License

@@ -15,6 +15,9 @@ var argv = require("yargs")
     .demand("s")
     .alias("s", "scenario")
     .describe("s", "Select a scenario to run")
+    .demand("l")
+    .alias("l", "logger")
+    .describe("l", "Select a logger to use")
     .alias("r", "randomseed")
     .describe("r", "Random seed to use for seeded scenarios")
     .argv;
@@ -24,29 +27,33 @@ requirejs([
     "elevatorsystem",
     "stats",
     argv.scenario,
-    argv.ai
-    ], function(ElevatorSystem, Stats, Scenario, AI) {
+    argv.ai,
+    argv.logger
+    ], function(ElevatorSystem, Stats, Scenario, AI, Logger) {
 
     // Initialize elevator system with the given ai and scenario
-    var stats = new Stats(argv);
-    var scenario = new Scenario(argv);
+    var logger = new Logger();
+    var stats = new Stats(logger, argv);
+    var ai = new AI(logger, argv);
+    var scenario = new Scenario(logger, argv);
     var system = new ElevatorSystem(
-        new AI(argv),
+        ai,
         scenario.getElevatorSetup(stats),
+        logger,
         stats,
         argv
     );
-    console.log("Elevator system initialized");
+    logger.log("Elevator system initialized");
 
     // Go through scenario
     var tick = 1;
     while(true) {
         // Log a new tick group
-        console.log("=== TICK " + tick + " ===");
+        logger.info("=== TICK " + tick + " ===");
 
         // Get current system state
         var systemState = system.getState();
-        console.log("System state: %s", JSON.stringify(systemState));
+        logger.log("System state: " + JSON.stringify(systemState));
 
         // Collect stats
         stats.onTick(systemState);
@@ -63,12 +70,12 @@ requirejs([
         system.onTick();
 
         // End tick group
-        console.log("");
+        logger.log("");
 
         // Increase time
         tick++;
     }
 
-    console.log("");
+    logger.log("");
     stats.onEnd();
 });

@@ -16,7 +16,7 @@ define(["underscore"], function(_) {
 		return freeIndex;
 	}
 
-	return function () {
+	return function (logger) {
 		var floorsCalling = [];
 
 		this.onTick = function(systemState, moveToFloorCallback) {
@@ -42,7 +42,7 @@ define(["underscore"], function(_) {
 		 * A traveler pushed a button on a floor that was not already pushed.
 		 */
 		this.onFloorCalled = function(systemState, floor) {
-			console.log("Floor calling: ", floor);
+			logger.log("Floor calling: " + floor);
 			floorsCalling.push(floor);
 		};
 

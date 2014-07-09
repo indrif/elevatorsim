@@ -10,7 +10,7 @@ define(["underscore", "traveler", "elevator"], function(_, Traveler, Elevator) {
         return systemState.callingFloors.length === 0 && elevatorsBusy.length === 0;
     }
 
-    return function(options) {
+    return function(logger, options) {
         var seed = (options.randomseed) ? options.randomseed : new Date().getTime();
         var rng = seedrandom(seed, {global: true});
         var chance = new Chance(seed);
@@ -52,7 +52,8 @@ define(["underscore", "traveler", "elevator"], function(_, Traveler, Elevator) {
                     system.addTraveler(new Traveler(
                         getName(),
                         chance.pick(floors),
-                        chance.pick(floors)
+                        chance.pick(floors),
+                        logger
                     ));
                 }
             }

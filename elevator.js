@@ -1,5 +1,5 @@
 define(["underscore"], function (_) {
-	return function(id, floor, floorCount, timePerFloor, timeOpenClose, stats) {
+	return function(id, floor, floorCount, timePerFloor, timeOpenClose, logger, stats) {
 		var handler = null,
 			pushedButtonsInside = [],
 			travelers = [],
@@ -46,7 +46,6 @@ define(["underscore"], function (_) {
 		};
 
 		this.startMovingToFloor = function(v) {
-			console.log("Initiate moving elevator " + id + " from " + floor + " to " + v);
 			ticksLeft = timePerFloor;
 			movingToFloor = v;
 			state = "moving";
@@ -68,15 +67,15 @@ define(["underscore"], function (_) {
 					if (ticksLeft === 0) {
 						if (movingToFloor - floor > 0) {
 							floor++;
-							console.log("Moving elevator " + id + " up to " + floor);
+							logger.log("Moving elevator " + id + " up to " + floor);
 							ticksLeft = timePerFloor;
 						} else if (movingToFloor - floor < 0) {
 							floor--;
-							console.log("Moving elevator " + id + " down to " + floor);
+							logger.log("Moving elevator " + id + " down to " + floor);
 							ticksLeft = timePerFloor;
 						} else {
 							state = "openclose";
-							console.log("Opening elevator " + id + " at " + floor);
+							logger.log("Opening elevator " + id + " at " + floor);
 							ticksLeft = timeOpenClose;
 
 							// Remove this floor from pushedButtons if it exists
@@ -92,7 +91,7 @@ define(["underscore"], function (_) {
 							return item.getToFloor() === floor;
 						});
 						_.each(partitions[0], function(item) {
-							console.log("Unload traveler " + item.getId() + " at " + floor + " that waited for " + item.getWaitedTime() + " ticks and that was in the elevator for " + item.getGoingTime() + " ticks.");
+							logger.log("Unload traveler " + item.getId() + " at " + floor + " that waited for " + item.getWaitedTime() + " ticks and that was in the elevator for " + item.getGoingTime() + " ticks.");
 							stats.onTravelerUnloaded(item);
 						});
 						travelers = partitions[1];
@@ -101,7 +100,7 @@ define(["underscore"], function (_) {
 						elevatorOpened(this);
 
 						// Report still
-						console.log("Elevator " + id + " is now standing still.");
+						logger.log("Elevator " + id + " is now standing still.");
 						state = "still";
 					}
 					break;

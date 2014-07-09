@@ -13,7 +13,7 @@ define(["underscore"], function(_) {
         return freeIndices;
     }
 
-    return function (options) {
+    return function (logger, options) {
         var seed = (options.randomseed) ? options.randomseed : new Date().getTime();
         var chance = new Chance(seed);
 
@@ -27,7 +27,7 @@ define(["underscore"], function(_) {
          * A traveler pushed a button on a floor that was not already pushed.
          */
         this.onFloorCalled = function(systemState, floor) {
-            console.log("Floor calling: ", floor);
+            logger.log("Floor calling: " + floor);
         };
 
         /**

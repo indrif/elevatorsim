@@ -1,11 +1,11 @@
 define(["underscore", "elevator"], function(_, Elevator) {
-	return function(ai, elevators, stats) {
+	return function(ai, elevators, logger, stats) {
 		var self = this;
 		var travelers = [];
 
-		console.log("Elevator system initializing with " + elevators.length + " elevator(s):");
+		logger.log("Elevator system initializing with " + elevators.length + " elevator(s):");
 		_.each(elevators, function(item, index) {
-			console.log("Elevator " + index, item.getState());
+			logger.log("Elevator " + index + ": " + item.getState());
 		});
 
 		this.addTraveler = function(traveler) {

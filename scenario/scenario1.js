@@ -14,7 +14,7 @@ define(["underscore", "traveler", "elevator"], function(_, Traveler, Elevator) {
         return systemState.callingFloors.length === 0 && elevatorsBusy.length === 0;
     }
 
-    return function(options) {
+    return function(logger, options) {
         this.isFinished = function(currentTick, systemState) {
             // End if more than 50 ticks have passed or if the system state is empty after 3 ticks
             return currentTick > 50 || (currentTick > 3 && isEmptyState(systemState));
@@ -22,21 +22,21 @@ define(["underscore", "traveler", "elevator"], function(_, Traveler, Elevator) {
 
         this.getElevatorSetup = function(stats) {
             return [
-                new Elevator("HISS 1", 2, 12, 1, 6, stats),
-                new Elevator("HISS 2", 2, 12, 1, 6, stats)
+                new Elevator("HISS 1", 2, 12, 1, 6, logger, stats),
+                new Elevator("HISS 2", 2, 12, 1, 6, logger, stats)
             ];
         };
 
         this.onTick = function(tick, system) {
             switch (tick) {
                 case 1:
-                    system.addTraveler(new Traveler(getName(), 0, 5));
+                    system.addTraveler(new Traveler(getName(), 0, 5, logger));
                     break;
                 case 2:
-                    system.addTraveler(new Traveler(getName(), 0, 4));
+                    system.addTraveler(new Traveler(getName(), 0, 4, logger));
                     break;
                 case 3:
-                    system.addTraveler(new Traveler(getName(), 3, 6));
+                    system.addTraveler(new Traveler(getName(), 3, 6, logger));
                     break;
             }
         };

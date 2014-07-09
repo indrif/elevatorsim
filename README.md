@@ -38,6 +38,12 @@ Examples:
 ./main.js --ai=ai/simple.js --scenario=scenario/scenario1.js --logger=logger/console.js --randomseed=123
 ```
 
+How to run tests
+---
+```
+npm test
+```
+
 License
 ---
 MIT

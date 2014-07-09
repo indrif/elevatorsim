@@ -19,7 +19,7 @@ Setup
 How to run
 ---
 ```
-./main.js 
+./main.js
 Usage: node ./main.js
 
 Examples:

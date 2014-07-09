@@ -49,7 +49,7 @@ Implementing scenarios
 
 Scenario files are placed in `scenario/`. See `scenario/scenario1.js` for a simple example.
 
-## Reference values
+### Reference values
 
 1 tick = 3 seconds of real time
 

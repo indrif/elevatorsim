@@ -37,6 +37,21 @@ Examples:
 ./main.js --ai=ai/simple.js --scenario=scenario/scenario1.js --randomseed=123
 ```
 
+Implementing scenarios
+---
+
+Scenario files are placed in `scenario/`. See `scenario/scenario1.js` for a simple example.
+
+## Reference values
+
+1 tick = 3 seconds of real time
+
+| Action               | Real-time  | Ticks |
+| -------------------- |:----------:| -----:|
+| Open and close doors | 9s         | 3     |
+| Move one floor       | 9s         | 3     |
+| One hour             | 1h         | 1200  |
+
 License
 ---
 MIT

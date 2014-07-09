@@ -1,7 +1,8 @@
 define(["underscore", "traveler", "elevator"], function(_, Traveler, Elevator) {
     var Chance = require("chance");
     var seedrandom = require("seedrandom");
-    var maxFloors = 4;
+    var maxFloors = 12;
+    var maxTravelerPeak = 10;
 
     function isEmptyState(systemState) {
         var elevatorsBusy = _.filter(systemState.elevators, function(item) {
@@ -45,15 +46,15 @@ define(["underscore", "traveler", "elevator"], function(_, Traveler, Elevator) {
             ];
         }
         this.onTick = function(tick, system) {
-            // 20 per hour
-            // Around 20 = morning
-            // Around 180 = dinner
-            var morningCount = getRandomCount(tick, 20, 10, 5);
-            var dinnerCount = getRandomCount(tick, 180, 10, 5);
+            // 10 per hour
+            // Around 10 = morning
+            // Around 90 = dinner
+            var morningCount = getRandomCount(tick, 10, 5, maxTravelerPeak);
+            var dinnerCount = getRandomCount(tick, 90, 5, maxTravelerPeak);
             for(var i = 0; i < morningCount + dinnerCount; i++) {
                 system.addTraveler(new Traveler(getName(), 0, 2 + parseInt(Math.random() * (maxFloors - 2))));
             }
-            if (tick > 30 && tick < 170) {
+            if (tick > 15 && tick < 95) {
                 // Random spawn travelers during the day
                 var count = parseInt(Math.random() * 2);
                 for(var i = 0; i < count; i++) {

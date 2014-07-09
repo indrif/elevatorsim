@@ -54,7 +54,7 @@ define(["underscore"], function(_) {
             logger.log("Going time");
             logger.log("=========");
             logger.log("Min: " + _.min(going) + ", max: " + _.max(going));
-            logger.log("Mean: " + mean(going) + ", variance: " + variance(going) + ", stddev: " + stddev(waited));
+            logger.log("Mean: " + mean(going) + ", variance: " + variance(going) + ", stddev: " + stddev(going));
             logger.log("");
             logger.log("Number of ticks: " + timeline.length);
             logger.log("");

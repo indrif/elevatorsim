@@ -40,8 +40,12 @@ define(["underscore"], function(_) {
 
 		/**
 		 * A traveler pushed a button on a floor that was not already pushed.
+		 *
+		 * @param systemState The system state.
+		 * @param floor The floor that was pushed
+		 * @param directionUp True if the traveler requested to travel up, false if down.
 		 */
-		this.onFloorCalled = function(systemState, floor) {
+		this.onFloorCalled = function(systemState, floor, directionUp) {
 			logger.log("Floor calling: " + floor);
 			floorsCalling.push(floor);
 		};

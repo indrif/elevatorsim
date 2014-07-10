@@ -2,20 +2,22 @@
   "name": "elevatorsim",
   "version": "0.0.1",
   "description": "Elevator simulator with custom AI.",
-  "main": "main.js",
+  "main": "lib/elevatorsim.js",
   "dependencies": {
     "chance": "^0.5.8",
-    "requirejs": "~2.1.14",
     "underscore": "^1.6.0",
     "yargs": "^1.2.6",
     "seedrandom": "^2.3.6",
     "colors": "^0.6.2"
   },
+  "files": [
+    "lib"
+  ],
   "devDependencies": {
+    "chai": "^1.9.1",
     "grunt": "^0.4.5",
     "grunt-contrib-jshint": "^0.10.0",
-    "mocha": "^1.20.1",
-    "chai": "^1.9.1"
+    "mocha": "^1.20.1"
   },
   "scripts": {
     "test": "mocha"

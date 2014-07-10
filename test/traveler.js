@@ -1,18 +1,11 @@
-var requirejs = require("requirejs");
-requirejs.config({
-    nodeRequire: require,
-    baseUrl: "."
-});
-
+/*jshint expr: true*/
 var expect = require("chai").expect;
-var LoggerClass = requirejs("logger/silent");
-var logger = new LoggerClass();
 
 describe("traveler", function () {
 	var traveler, elevator;
 	beforeEach(function () {
-		var TravelerClass = requirejs("traveler");
-		traveler = new TravelerClass("id", 0, 2, logger);
+		var TravelerClass = require("../lib/traveler");
+		traveler = new TravelerClass("id", 0, 2);
 		elevator = {
 			pushButton: function () {},
 			getId: function () { return ""; }

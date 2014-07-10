@@ -1,24 +1,20 @@
-var requirejs = require("requirejs");
-requirejs.config({
-    nodeRequire: require,
-    baseUrl: "."
-});
-
-var expect = require("chai").expect;
-var LoggerClass = requirejs("logger/silent");
-var logger = new LoggerClass();
+/*jshint expr: true*/
+var expect = require("chai").expect,
+    Elevator = require("../lib/elevator");
 
 describe("elevator", function () {
 	var elevator, traveler;
 	beforeEach(function () {
-		var ElevatorClass = requirejs("elevator");
-		elevator = new ElevatorClass("id", 1, 10, 2, 3, logger);
 		traveler = {
 			getToFloor: function () {return 1; },
 			getFromFloor: function () {return 0; },
 			getId: function () {return "id"; },
 			onEnterElevator: function () {}
 		};
+        stats = {
+            onTravelerUnloaded: function() {}
+        };
+        elevator = new Elevator("id", 1, 10, 2, 3, stats);
 	});
 	it("should return its id", function () {
 		expect(elevator.getId()).to.equal("id");

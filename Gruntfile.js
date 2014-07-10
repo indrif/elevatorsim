@@ -2,7 +2,7 @@ module.exports = function(grunt) {
     grunt.initConfig({
         pkg: grunt.file.readJSON("package.json"),
         jshint: {
-            files: ["*.js", "ai/*.js", "scenario/*.js", "logger/*.js"],
+            files: ["lib/*.js"],
             options: {
                 // options here to override JSHint defaults
                 globals: {

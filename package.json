@@ -2,7 +2,7 @@
   "name": "elevatorsim",
   "version": "0.0.1",
   "description": "Elevator simulator with custom AI.",
-  "main": "main.js",
+  "main": "lib/elevatorsim.js",
   "dependencies": {
     "chance": "^0.5.8",
     "requirejs": "~2.1.14",
@@ -11,6 +11,9 @@
     "seedrandom": "^2.3.6",
     "colors": "^0.6.2"
   },
+  "files" : [
+    "lib"
+  ],
   "devDependencies": {
     "grunt": "^0.4.5",
     "grunt-contrib-jshint": "^0.10.0",

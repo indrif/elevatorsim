@@ -17,4 +17,4 @@ var elevatorsim = require("./lib/elevatorsim");
 var scenario = require(argv.s);
 var ai = require(argv.a);
 
-console.log(JSON.stringify(elevatorsim.simulate(scenario, ai), null, 2));
+console.log(JSON.stringify(elevatorsim.simulate(scenario, ai, argv), null, 2));

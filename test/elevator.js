@@ -1,5 +1,4 @@
-
-
+/*jshint expr: true*/
 var expect = require("chai").expect,
     Elevator = require("../lib/elevator");
 

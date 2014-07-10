@@ -4,6 +4,7 @@ var expect = require("chai").expect,
 
 describe("elevator", function () {
 	var elevator, traveler, stats;
+	var empty = function () {};
 
 	function moveElevatorToFloor(elevator, floor) {
 		var current = elevator.getState().floor;
@@ -82,7 +83,7 @@ describe("elevator", function () {
 
 		// Open close doors
 		for(var i = 0; i < 3; i++) {
-			elevator.onTick(null, function () {});
+			elevator.onTick(null, empty);
 		}
 
 		// Move up
@@ -115,7 +116,7 @@ describe("elevator", function () {
 		};
 		moveElevatorToFloor(elevator, 2);
 		for(var i = 0; i < 6; i++) {
-			elevator.onTick(null, function () {});
+			elevator.onTick(null, empty);
 		}
 	});
 	it("should not reset ticksLeft when changing direction", function () {

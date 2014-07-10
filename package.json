@@ -10,14 +10,14 @@
     "seedrandom": "^2.3.6",
     "colors": "^0.6.2"
   },
-  "files" : [
+  "files": [
     "lib"
   ],
   "devDependencies": {
+    "chai": "^1.9.1",
     "grunt": "^0.4.5",
     "grunt-contrib-jshint": "^0.10.0",
-    "mocha": "^1.20.1",
-    "chai": "^1.9.1"
+    "mocha": "^1.20.1"
   },
   "scripts": {
     "test": "mocha"

@@ -8,7 +8,7 @@ describe("elevator", function () {
 	function moveElevatorToFloor(elevator, floor) {
 		var current = elevator.getState().floor;
 		elevator.startMovingToFloor(floor);
-		for(var floors = 0; floors < Math.abs(floor - current); floors++) {
+		for(var floors = 0; floors <= Math.abs(floor - current); floors++) {
 			for(var i = 2; i > 0; i--) {
 				elevator.onTick();
 			}
@@ -80,6 +80,11 @@ describe("elevator", function () {
 		state = elevator.getState();
 		expect(state.floor).to.equal(2);
 
+		// Open close doors
+		for(var i = 0; i < 3; i++) {
+			elevator.onTick(null, function () {});
+		}
+
 		// Move up
 		moveElevatorToFloor(elevator, 1);
 		state = elevator.getState();
@@ -95,8 +100,6 @@ describe("elevator", function () {
 		expect(state.state).to.equal("openclose");
 
 		// Wait for open to finish, then our callback should be invoked
-		elevator.onTick();
-		elevator.onTick();
 		elevator.onTick(null, function () {
 			done();
 		});
@@ -114,5 +117,19 @@ describe("elevator", function () {
 		for(var i = 0; i < 6; i++) {
 			elevator.onTick(null, function () {});
 		}
+	});
+	it("should not reset ticksLeft when changing direction", function () {
+		elevator.startMovingToFloor(2);
+		elevator.onTick();
+		elevator.startMovingToFloor(1);
+		var state = elevator.getState();
+		expect(state.ticksLeft).to.equal(1);
+	});
+	it("should throw error when trying to move while opening", function () {
+		moveElevatorToFloor(elevator, 2);
+		var testFunc = function () {
+			elevator.startMovingToFloor(5);
+		};
+		expect(testFunc).to.throw(Error);
 	});
 });

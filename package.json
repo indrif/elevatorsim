@@ -17,10 +17,11 @@
     "chai": "^1.9.1",
     "grunt": "^0.4.5",
     "grunt-contrib-jshint": "^0.10.0",
-    "mocha": "^1.20.1"
+    "mocha": "^1.20.1",
+    "istanbul": "^0.3.0"
   },
   "scripts": {
-    "test": "mocha"
+    "test": "./node_modules/istanbul/lib/cli.js cover --hook-run-in-context ./node_modules/mocha/bin/_mocha -- -R spec"
   },
   "repository": {
     "type": "git",

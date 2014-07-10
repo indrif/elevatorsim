@@ -1,12 +1,4 @@
-var requirejs = require("requirejs");
-requirejs.config({
-    nodeRequire: require,
-    baseUrl: "."
-});
-
 var expect = require("chai").expect;
-var LoggerClass = requirejs("logger/silent");
-var logger = new LoggerClass();
 
 describe("elevatorsystem", function () {
 	var elevatorsystem, traveler, ai, elevator;
@@ -29,8 +21,8 @@ describe("elevatorsystem", function () {
 			},
 			onTick: function () {}
 		};
-		var ElevatorSystemClass = requirejs("elevatorsystem");
-		elevatorsystem = new ElevatorSystemClass(ai, [elevator], logger);
+		var ElevatorSystemClass = require("../lib/elevatorsystem");
+		elevatorsystem = new ElevatorSystemClass(ai, [elevator]);
 	});
 	it("should return its state", function () {
 		var state = elevatorsystem.getState();

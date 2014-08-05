@@ -3,6 +3,9 @@
   "version": "0.0.1",
   "description": "Elevator simulator with custom AI.",
   "main": "lib/elevatorsim.js",
+  "bin": {
+    "elevatorsim": "./cli.js"
+  },
   "dependencies": {
     "chance": "^0.5.8",
     "underscore": "^1.6.0",
@@ -29,7 +32,10 @@
     "type": "git",
     "url": "https://github.com/indrif/elevatorsim.git"
   },
-  "author": "indrif",
+  "author": "Daniel Winther",
+  "contributors": [
+    "Tommy Brunn <tommy.brunn@gmail.com> (http://tommybrunn.com)"
+  ],
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/indrif/elevatorsim/issues"

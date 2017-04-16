@@ -1,6 +1,7 @@
 elevatorsim
 ===========
 
+Just testing.
 elevatorsim is an elevator simulator written in Javascript.
 
 [![Build Status](https://travis-ci.org/indrif/elevatorsim.svg?branch=master)](https://travis-ci.org/indrif/elevatorsim)
